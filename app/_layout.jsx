@@ -1,12 +1,12 @@
-import { Text, View } from 'react-native';
+import { Stack } from 'expo-router';
 
 export default function RootLayout() {
 
 
   return (
-    <View>
-      <Text>Bom dia</Text>
-      <Text>Iniciando projeto de Finanças</Text>
-    </View>
+    <Stack>
+      <Stack.Screen name='(tabs)' options={{headerShown: false}}/>
+      <Stack.Screen name='+not-found'/>
+    </Stack>
   );
 }

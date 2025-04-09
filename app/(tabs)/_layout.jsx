@@ -1,9 +1,12 @@
+import { Tabs } from "expo-router";
 import { Text, View } from "react-native";
 
-export default function index() {
+export default function TabsLayout() {
   return (
-    <View>
-      <Text>Olá</Text>
-    </View>
+   <Tabs>
+    <Tabs.Screen name="index"/>
+    <Tabs.Screen name="add-transactions"/>
+    <Tabs.Screen name="summary"/>
+   </Tabs>
   )
 }
