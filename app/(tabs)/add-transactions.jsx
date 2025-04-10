@@ -1,28 +1,20 @@
-import {
-    Alert,
-    SafeAreaView,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    View
-} from "react-native";
-import { globalStyles } from "../../styles/globalStyles";
+import { Alert, SafeAreaView, ScrollView, View } from "react-native";
 import { useState } from "react";
 
+import { globalStyles } from "../../styles/globalStyles";
 import Button from "../../components/Button";
 import CategoryPicker from "../../components/CategoryPicker";
 import DatePicker from "../../components/DatePicker";
 import CurrencyInput from "../../components/CurrencyInput";
+import DescriptionInput from "../../components/DescriptionInput";
 
+const initialForm = {
+    description: "",
+    value: 0,
+    date: new Date(),
+    category: "income"
+}
 export default function AddTransactions() {
-
-    const initialForm = {
-        description: "",
-        value: 0,
-        date: new Date(),
-        category: "income"
-    }
 
     const [form, setForm] = useState(initialForm)
 
@@ -34,15 +26,8 @@ export default function AddTransactions() {
     return (
         <SafeAreaView style={globalStyles.screenContainer}>
             <ScrollView style={globalStyles.content}>
-                <View style={styles.form}>
-                    <View>
-                        <Text style={globalStyles.inputLabel}>Descrição</Text>
-                        <TextInput
-                            value={form.description}
-                            onChangeText={(text) => setForm({ ...form, description: text })}
-                            style={globalStyles.input}
-                        />
-                    </View>
+                <View style={globalStyles.form}>
+                    <DescriptionInput form={form} setForm={setForm} />
                     <CurrencyInput form={form} setForm={setForm} />
                     <DatePicker form={form} setForm={setForm} />
                     <CategoryPicker form={form} setForm={setForm} />
@@ -52,11 +37,3 @@ export default function AddTransactions() {
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    form: {
-        gap: 12,
-        marginBottom: 40,
-        marginTop: 10,
-    },
-})

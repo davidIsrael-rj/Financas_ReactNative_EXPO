@@ -23,5 +23,10 @@ export const globalStyles = StyleSheet.create({
         fontSize: 16,
         color: colors.primaryText,
         marginBottom: 4
-    }
+    },
+    form: {
+        gap: 12,
+        marginBottom: 40,
+        marginTop: 10,
+    },
 })
