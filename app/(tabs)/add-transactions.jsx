@@ -8,6 +8,7 @@ import DatePicker from "../../components/DatePicker";
 import CurrencyInput from "../../components/CurrencyInput";
 import DescriptionInput from "../../components/DescriptionInput";
 import { MoneyContext } from "../../contexts/GlobalState";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialForm = {
     description: "",
@@ -21,12 +22,21 @@ export default function AddTransactions() {
     const [transactions, setTransactions] = useContext(MoneyContext)
     const valueInputRef = useRef()
 
+    const setAsyncStorage = async (data) =>{
+        try{
+            await AsyncStorage.setItem("transactions", JSON.stringify(data))
+        }catch(e){
+            console.log(e)
+        }
+    }
 
-    const addTransaction = () => {
+
+    const addTransaction = async () => {
         const newTransaction = {id: transactions.lenght + 1, ...form}
         const updatedTransactions = [...transactions, newTransaction]
         setTransactions(updatedTransactions)
         setForm(initialForm)
+        await setAsyncStorage(updatedTransactions)
         Alert.alert("Transação adicionada com sucesso!")
     }
 
