@@ -1,4 +1,4 @@
-import { Alert, SafeAreaView, ScrollView, View } from "react-native";
+import { Alert, Keyboard, KeyboardAvoidingView, SafeAreaView, ScrollView, TouchableWithoutFeedback, View } from "react-native";
 import { useState } from "react";
 
 import { globalStyles } from "../../styles/globalStyles";
@@ -24,16 +24,18 @@ export default function AddTransactions() {
     }
 
     return (
-        <SafeAreaView style={globalStyles.screenContainer}>
-            <ScrollView style={globalStyles.content}>
-                <View style={globalStyles.form}>
-                    <DescriptionInput form={form} setForm={setForm} />
-                    <CurrencyInput form={form} setForm={setForm} />
-                    <DatePicker form={form} setForm={setForm} />
-                    <CategoryPicker form={form} setForm={setForm} />
-                </View>
-                <Button onPress={addTransaction}>Adicionar</Button>
-            </ScrollView>
-        </SafeAreaView>
+        <KeyboardAvoidingView style={globalStyles.screenContainer}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                <ScrollView style={globalStyles.content}>
+                    <View style={globalStyles.form}>
+                        <DescriptionInput form={form} setForm={setForm} />
+                        <CurrencyInput form={form} setForm={setForm} />
+                        <DatePicker form={form} setForm={setForm} />
+                        <CategoryPicker form={form} setForm={setForm} />
+                    </View>
+                    <Button onPress={addTransaction}>Adicionar</Button>
+                </ScrollView>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     )
 }
