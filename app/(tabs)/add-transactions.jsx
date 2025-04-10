@@ -6,6 +6,7 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
 import { categories } from "../../constants/categories";
 import { colors } from "../../constants/colors";
+import CategoryPicker from "../../components/CategoryPicker";
 
 export default function AddTransactions() {
 
@@ -13,7 +14,7 @@ export default function AddTransactions() {
         description: "",
         value: 0,
         date: new Date(),
-        category: "Renda"
+        category: "income"
     }
 
     const [form, setForm] = useState(initialForm)
@@ -80,37 +81,7 @@ export default function AddTransactions() {
                             />
                         )}
                     </View>
-                    <View>
-                        <Text style={globalStyles.inputLabel}>Categoria</Text>
-                        <View style={styles.picker}>
-                            <Picker
-                                selectedValue={form.category}
-                                onValueChange={(itemValue) => setForm({ ...form, category: itemValue })}
-                            >
-                                <Picker.Item
-                                    label={categories.icome.displayName}
-                                    value={categories.icome.name}
-                                />
-                                <Picker.Item
-                                    label={categories.food.displayName}
-                                    value={categories.food.name}
-                                />
-                                <Picker.Item
-                                    label={categories.house.displayName}
-                                    value={categories.house.name}
-                                />
-                                <Picker.Item
-                                    label={categories.education.displayName}
-                                    value={categories.education.name}
-                                />
-                                <Picker.Item
-                                    label={categories.travel.displayName}
-                                    value={categories.travel.name}
-                                />
-
-                            </Picker>
-                        </View>
-                    </View>
+                    <CategoryPicker form={form} setForm={setForm}/>
                 </View>
                 <Button onPress={addTransaction}>Adicionar</Button>
             </ScrollView>
@@ -124,13 +95,4 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         marginTop: 10,
     },
-    picker: {
-        display: "flex",
-        justifyContent: "center",
-        height: 44,
-        borderColor: colors.secondaryText,
-        borderWidth: 1,
-        borderRadius: 8,
-        flexGrow: 1
-    }
 })
