@@ -3,6 +3,9 @@ import { globalStyles } from "../../styles/globalStyles";
 import Button from "../../components/Button";
 import { useState } from "react";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
+import { Picker } from "@react-native-picker/picker";
+import { categories } from "../../constants/categories";
+import { colors } from "../../constants/colors";
 
 export default function AddTransactions() {
 
@@ -29,10 +32,10 @@ export default function AddTransactions() {
     }
 
 
-    const handleDateChange =(_, selectDate)=>{
+    const handleDateChange = (_, selectDate) => {
         setShowPicker(false)
-        if(selectDate){
-            setForm({...form, date: selectDate})
+        if (selectDate) {
+            setForm({ ...form, date: selectDate })
         }
     }
 
@@ -70,19 +73,43 @@ export default function AddTransactions() {
                         </TouchableOpacity>
                         {showPicker && (
                             <RNDateTimePicker
-                            mode="date"
-                            display={Platform.OS === "ios" ? "inline" : "default"}
-                            value={form.date}
-                            onChange={handleDateChange}
+                                mode="date"
+                                display={Platform.OS === "ios" ? "inline" : "default"}
+                                value={form.date}
+                                onChange={handleDateChange}
                             />
                         )}
                     </View>
                     <View>
                         <Text style={globalStyles.inputLabel}>Categoria</Text>
-                        <TextInput
-                            value={form.category}
-                            onChangeText={(text) => setForm({ ...form, category: text })}
-                            style={globalStyles.input} />
+                        <View style={styles.picker}>
+                            <Picker
+                                selectedValue={form.category}
+                                onValueChange={(itemValue) => setForm({ ...form, category: itemValue })}
+                            >
+                                <Picker.Item
+                                    label={categories.icome.displayName}
+                                    value={categories.icome.name}
+                                />
+                                <Picker.Item
+                                    label={categories.food.displayName}
+                                    value={categories.food.name}
+                                />
+                                <Picker.Item
+                                    label={categories.house.displayName}
+                                    value={categories.house.name}
+                                />
+                                <Picker.Item
+                                    label={categories.education.displayName}
+                                    value={categories.education.name}
+                                />
+                                <Picker.Item
+                                    label={categories.travel.displayName}
+                                    value={categories.travel.name}
+                                />
+
+                            </Picker>
+                        </View>
                     </View>
                 </View>
                 <Button onPress={addTransaction}>Adicionar</Button>
@@ -96,5 +123,14 @@ const styles = StyleSheet.create({
         gap: 12,
         marginBottom: 40,
         marginTop: 10,
+    },
+    picker: {
+        display: "flex",
+        justifyContent: "center",
+        height: 44,
+        borderColor: colors.secondaryText,
+        borderWidth: 1,
+        borderRadius: 8,
+        flexGrow: 1
     }
 })

@@ -12,9 +12,9 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal:20
     },
     input:{
-        height: 40,
+        height: 44,
         paddingHorizontal: 16,
-        borderColor: colors.secodaryText,
+        borderColor: colors.secondaryText,
         borderWidth:1,
         borderRadius: 8,
         flexGrow: 1

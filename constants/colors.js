@@ -9,7 +9,7 @@ export const colors ={
     categoryEducation: "#ab8fbe",
     categoryTravel: "#82c9de",
     primaryText: "#666666",
-    secodaryText: "#b1b1b1",
+    secondaryText: "#b1b1b1",
     positiveText: "#37bf81",
     negativesText: "#da5567"
 }
