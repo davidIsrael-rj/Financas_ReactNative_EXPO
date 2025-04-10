@@ -1,12 +1,18 @@
-import { Alert, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+    Alert,
+    SafeAreaView,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    View
+} from "react-native";
 import { globalStyles } from "../../styles/globalStyles";
-import Button from "../../components/Button";
 import { useState } from "react";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
-import { Picker } from "@react-native-picker/picker";
-import { categories } from "../../constants/categories";
-import { colors } from "../../constants/colors";
+
+import Button from "../../components/Button";
 import CategoryPicker from "../../components/CategoryPicker";
+import DatePicker from "../../components/DatePicker";
 
 export default function AddTransactions() {
 
@@ -19,7 +25,7 @@ export default function AddTransactions() {
 
     const [form, setForm] = useState(initialForm)
 
-    const [showPicker, setShowPicker] = useState(false)
+
 
     const addTransaction = () => {
         Alert.alert(`${form.description} , ${form.value} , ${form.date} , ${form.category} `)
@@ -33,12 +39,7 @@ export default function AddTransactions() {
     }
 
 
-    const handleDateChange = (_, selectDate) => {
-        setShowPicker(false)
-        if (selectDate) {
-            setForm({ ...form, date: selectDate })
-        }
-    }
+
 
     return (
         <SafeAreaView style={globalStyles.screenContainer}>
@@ -63,25 +64,8 @@ export default function AddTransactions() {
                             onChangeText={handleCurrencyChange}
                             style={globalStyles.input} />
                     </View>
-                    <View>
-                        <Text style={globalStyles.inputLabel}>Data</Text>
-                        <TouchableOpacity onPress={() => setShowPicker(true)}>
-                            <TextInput
-                                value={form.date.toLocaleDateString("pt-BR")}
-                                onChangeText={(text) => setForm({ ...form, date: text })}
-                                style={globalStyles.input}
-                                editable={false} />
-                        </TouchableOpacity>
-                        {showPicker && (
-                            <RNDateTimePicker
-                                mode="date"
-                                display={Platform.OS === "ios" ? "inline" : "default"}
-                                value={form.date}
-                                onChange={handleDateChange}
-                            />
-                        )}
-                    </View>
-                    <CategoryPicker form={form} setForm={setForm}/>
+                    <DatePicker form={form} setForm={setForm} />
+                    <CategoryPicker form={form} setForm={setForm} />
                 </View>
                 <Button onPress={addTransaction}>Adicionar</Button>
             </ScrollView>
