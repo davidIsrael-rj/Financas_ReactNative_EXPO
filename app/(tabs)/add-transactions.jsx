@@ -13,6 +13,7 @@ import { useState } from "react";
 import Button from "../../components/Button";
 import CategoryPicker from "../../components/CategoryPicker";
 import DatePicker from "../../components/DatePicker";
+import CurrencyInput from "../../components/CurrencyInput";
 
 export default function AddTransactions() {
 
@@ -25,21 +26,10 @@ export default function AddTransactions() {
 
     const [form, setForm] = useState(initialForm)
 
-
-
     const addTransaction = () => {
         Alert.alert(`${form.description} , ${form.value} , ${form.date} , ${form.category} `)
         setForm(initialForm)
     }
-
-    const handleCurrencyChange = (text) => {
-        const formattedValue = text.replace(/\D/g, "")
-        const numberValue = formattedValue ? (parseFloat(formattedValue) / 100) : 0
-        setForm({ ...form, value: numberValue })
-    }
-
-
-
 
     return (
         <SafeAreaView style={globalStyles.screenContainer}>
@@ -53,17 +43,7 @@ export default function AddTransactions() {
                             style={globalStyles.input}
                         />
                     </View>
-                    <View>
-                        <Text style={globalStyles.inputLabel}>Valor</Text>
-                        <TextInput
-                            value={form.value.toLocaleString("pt-BR", {
-                                style: "currency",
-                                currency: "BRL"
-                            })}
-                            keyboardType="numeric"
-                            onChangeText={handleCurrencyChange}
-                            style={globalStyles.input} />
-                    </View>
+                    <CurrencyInput form={form} setForm={setForm} />
                     <DatePicker form={form} setForm={setForm} />
                     <CategoryPicker form={form} setForm={setForm} />
                 </View>
