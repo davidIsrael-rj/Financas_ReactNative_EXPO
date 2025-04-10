@@ -1,5 +1,5 @@
 import { Alert, Keyboard, KeyboardAvoidingView, SafeAreaView, ScrollView, TouchableWithoutFeedback, View } from "react-native";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { globalStyles } from "../../styles/globalStyles";
 import Button from "../../components/Button";
@@ -17,6 +17,8 @@ const initialForm = {
 export default function AddTransactions() {
 
     const [form, setForm] = useState(initialForm)
+    const valueInputRef = useRef()
+
 
     const addTransaction = () => {
         Alert.alert(`${form.description} , ${form.value} , ${form.date} , ${form.category} `)
@@ -28,8 +30,8 @@ export default function AddTransactions() {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <ScrollView style={globalStyles.content}>
                     <View style={globalStyles.form}>
-                        <DescriptionInput form={form} setForm={setForm} />
-                        <CurrencyInput form={form} setForm={setForm} />
+                        <DescriptionInput form={form} setForm={setForm} valueInputRef={valueInputRef} />
+                        <CurrencyInput form={form} setForm={setForm} valueInputRef={valueInputRef}/>
                         <DatePicker form={form} setForm={setForm} />
                         <CategoryPicker form={form} setForm={setForm} />
                     </View>
