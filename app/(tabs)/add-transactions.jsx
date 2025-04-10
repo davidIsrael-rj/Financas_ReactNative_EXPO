@@ -17,6 +17,13 @@ export default function AddTransactions() {
     const addTransaction = () => {
         Alert.alert(`${form.description} , ${form.value} , ${form.date} , ${form.category} `)
     }
+
+    const handleCurrencyChange = (text)=>{
+        const formattedValue = text.replace(/\D/g, "")
+        const numberValue = formattedValue ? (parseFloat(formattedValue) / 100) : 0
+        setForm({ ...form, value: numberValue })
+    }
+
     return (
         <SafeAreaView style={globalStyles.screenContainer}>
             <ScrollView style={globalStyles.content}>
@@ -32,9 +39,12 @@ export default function AddTransactions() {
                     <View>
                         <Text style={globalStyles.inputLabel}>Valor</Text>
                         <TextInput
-                            value={form.value}
+                            value={form.value.toLocaleString("pt-BR",{
+                                style: "currency",
+                                currency: "BRL"
+                            })}
                             keyboardType="numeric"
-                            onChangeText={(text) => setForm({ ...form, value: text })}
+                            onChangeText={handleCurrencyChange}
                             style={globalStyles.input} />
                     </View>
                     <View>
