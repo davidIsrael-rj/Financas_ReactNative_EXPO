@@ -1,5 +1,5 @@
-import { Alert, Keyboard, KeyboardAvoidingView, SafeAreaView, ScrollView, TouchableWithoutFeedback, View } from "react-native";
-import { useRef, useState } from "react";
+import { Alert, Keyboard, KeyboardAvoidingView, ScrollView, TouchableWithoutFeedback, View } from "react-native";
+import { useContext, useRef, useState } from "react";
 
 import { globalStyles } from "../../styles/globalStyles";
 import Button from "../../components/Button";
@@ -7,6 +7,7 @@ import CategoryPicker from "../../components/CategoryPicker";
 import DatePicker from "../../components/DatePicker";
 import CurrencyInput from "../../components/CurrencyInput";
 import DescriptionInput from "../../components/DescriptionInput";
+import { MoneyContext } from "../../contexts/GlobalState";
 
 const initialForm = {
     description: "",
@@ -17,12 +18,16 @@ const initialForm = {
 export default function AddTransactions() {
 
     const [form, setForm] = useState(initialForm)
+    const [transactions, setTransactions] = useContext(MoneyContext)
     const valueInputRef = useRef()
 
 
     const addTransaction = () => {
-        Alert.alert(`${form.description} , ${form.value} , ${form.date} , ${form.category} `)
+        const newTransaction = {id: transactions.lenght + 1, ...form}
+        const updatedTransactions = [...transactions, newTransaction]
+        setTransactions(updatedTransactions)
         setForm(initialForm)
+        Alert.alert("Transação adicionada com sucesso!")
     }
 
     return (
