@@ -29,4 +29,24 @@ export const globalStyles = StyleSheet.create({
         marginBottom: 40,
         marginTop: 10,
     },
+    line:{
+        backgroundColor: colors.secondaryText,
+        height:1
+    },
+    primaryText:{
+        fontSize: 16,
+        color: colors.primaryText
+    },
+    secondaryText:{
+        fontSize: 12,
+        color: colors.secondaryText
+    },
+    positiveText:{
+        fontSize:16,
+        color: colors.positiveText
+    },
+    negativeText: {
+        fontSize: 16,
+        color: colors.negativesText
+    }
 })

@@ -1,7 +1,7 @@
 import { colors } from "./colors";
 
 export const categories = {
-    icome:{
+    income:{
         icon: "work",
         background: colors.categoryIncome,
         name: "income",

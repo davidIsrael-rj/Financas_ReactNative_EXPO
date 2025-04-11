@@ -4,39 +4,39 @@ import { categories } from "../constants/categories"
 import { globalStyles } from "../styles/globalStyles"
 import { colors } from "../constants/colors"
 
-export default function CategoryPicker({form, setForm}){
-    return(
+export default function CategoryPicker({ form, setForm }) {
+    return (
         <View>
-                        <Text style={globalStyles.inputLabel}>Categoria</Text>
-                        <View style={styles.picker}>
-                            <Picker
-                                selectedValue={form.category}
-                                onValueChange={(itemValue) => setForm({ ...form, category: itemValue })}
-                            >
-                                <Picker.Item
-                                    label={categories.icome.displayName}
-                                    value={categories.icome.name}
-                                />
-                                <Picker.Item
-                                    label={categories.food.displayName}
-                                    value={categories.food.name}
-                                />
-                                <Picker.Item
-                                    label={categories.house.displayName}
-                                    value={categories.house.name}
-                                />
-                                <Picker.Item
-                                    label={categories.education.displayName}
-                                    value={categories.education.name}
-                                />
-                                <Picker.Item
-                                    label={categories.travel.displayName}
-                                    value={categories.travel.name}
-                                />
+            <Text style={globalStyles.inputLabel}>Categoria</Text>
+            <View style={styles.picker}>
+                <Picker
+                    selectedValue={form.category}
+                    onValueChange={(itemValue) => setForm({ ...form, category: itemValue })}
+                >
+                    <Picker.Item
+                        label={categories.income.displayName}
+                        value={categories.income.name}
+                    />
+                    <Picker.Item
+                        label={categories.food.displayName}
+                        value={categories.food.name}
+                    />
+                    <Picker.Item
+                        label={categories.house.displayName}
+                        value={categories.house.name}
+                    />
+                    <Picker.Item
+                        label={categories.education.displayName}
+                        value={categories.education.name}
+                    />
+                    <Picker.Item
+                        label={categories.travel.displayName}
+                        value={categories.travel.name}
+                    />
 
-                            </Picker>
-                        </View>
-                    </View>
+                </Picker>
+            </View>
+        </View>
     )
 }
 

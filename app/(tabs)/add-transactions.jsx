@@ -9,12 +9,13 @@ import CurrencyInput from "../../components/CurrencyInput";
 import DescriptionInput from "../../components/DescriptionInput";
 import { MoneyContext } from "../../contexts/GlobalState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { categories } from "../../constants/categories";
 
 const initialForm = {
     description: "",
     value: 0,
     date: new Date(),
-    category: "income"
+    category: categories.income.name
 }
 export default function AddTransactions() {
 
