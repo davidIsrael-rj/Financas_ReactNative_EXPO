@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { colors } from "../../constants/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -21,13 +21,13 @@ export default function TabsLayout() {
         tabBarButton: (props) => <TouchableOpacity{...props} activeOpacity={0.8} />
 
       }}>
+     
       <Tabs.Screen name="index" options={{
         title: "Transações",
         tabBarIcon: ({ color }) => (
           <MaterialIcons name="attach-money" size={28} color={color} />
         )
-      }} />
-      <Tabs.Screen name="add-transactions" options={{
+      }} /> <Tabs.Screen name="add-transactions" options={{
         title: "Adicionar Transação",
         tabBarLabel: "",
         tabBarIcon: () => (
